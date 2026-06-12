@@ -9,9 +9,9 @@ if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
 endif()
 
-# Default to C++14
+# Default to C++17
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14)
+  set(CMAKE_CXX_STANDARD 17)
 endif()
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -107,6 +107,7 @@ if(NOT realsense2_FOUND)
 endif()
 
 #set(CMAKE_NO_SYSTEM_FROM_IMPORTED true)
+include_directories(BEFORE ${realsense2_INCLUDE_DIR})
 include_directories(include)
 
 set(node_plugins "")
@@ -148,6 +149,10 @@ elseif("$ENV{ROS_DISTRO}" STREQUAL "galactic")
 elseif("$ENV{ROS_DISTRO}" STREQUAL "humble")
   message(STATUS "Build for ROS2 Humble")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DHUMBLE")
+  set(SOURCES "${SOURCES}" src/ros_param_backend_foxy.cpp)
+elseif("$ENV{ROS_DISTRO}" STREQUAL "jazzy")
+  message(STATUS "Build for ROS2 Jazzy")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DJAZZY")
   set(SOURCES "${SOURCES}" src/ros_param_backend_foxy.cpp)
 elseif("$ENV{ROS_DISTRO}" STREQUAL "rolling")
   message(STATUS "Build for ROS2 Rolling")

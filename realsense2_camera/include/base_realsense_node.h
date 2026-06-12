@@ -6,7 +6,11 @@
 #include <librealsense2/rs.hpp>
 #include <librealsense2/rsutil.h>
 #include "constants.h"
+#if __has_include(<cv_bridge/cv_bridge.hpp>)
+#include <cv_bridge/cv_bridge.hpp>
+#else
 #include <cv_bridge/cv_bridge.h>
+#endif
 
 #include <diagnostic_updater/diagnostic_updater.hpp>
 #include <diagnostic_updater/publisher.hpp>
@@ -300,4 +304,3 @@ namespace realsense2_camera
 
     };//end class
 }
-
