@@ -185,6 +185,7 @@ VideoProfilesManager::VideoProfilesManager(std::shared_ptr<Parameters> parameter
     _force_image_default_qos(force_image_default_qos)
 {
     _allowed_formats[RS2_STREAM_DEPTH] = RS2_FORMAT_Z16;
+    _allowed_formats[RS2_STREAM_COLOR] = RS2_FORMAT_RGB8;
     _allowed_formats[RS2_STREAM_INFRARED] = RS2_FORMAT_Y8;
 }
 
